@@ -1,0 +1,5 @@
+print("Hello")
+print(3)
+print(3+10)
+print("3+10")
+print("3+10=", 3+10)

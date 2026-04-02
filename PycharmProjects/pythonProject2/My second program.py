@@ -1,0 +1,5 @@
+print(25+35)
+print("My overall GPA is",3.0)
+print(27*4)
+print(36/6)
+print(60-44)
