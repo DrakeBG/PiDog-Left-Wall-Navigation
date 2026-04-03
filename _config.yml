@@ -1,0 +1,3 @@
+remote_theme: pages-themes/minimal@v0.2.0
+title: PiDog Left-Wall Navigator
+description: An autonomous navigation project using Python and PiDog.
