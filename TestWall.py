@@ -9,7 +9,7 @@ my_dog.do_action('stand', speed=80)
 my_dog.wait_all_done()
 time.sleep(.1)
 
-DANGER_DISTANCE = 20
+DANGER_DISTANCE = 35
 
 stand = my_dog.legs_angle_calculation([[0, 80], [0, 80], [30, 75], [30, 75]])
 
@@ -29,16 +29,16 @@ def patrol():
 
         # STEP 2: Pan Head Left to check for a side wall
         print("Status: Panning Left to scan...")
-        my_dog.head_move([[15, 0, 0]], immediately=True, speed=60)
+        my_dog.head_move([[90, 0, 0]], immediately=True, speed=60)
         time.sleep(0.1)
-
+        
         # Re-read distance while looking left
         side_distance = round(my_dog.read_distance(), 2)
         # STEP 3: Logic Branching based on side scan
         if side_distance < DANGER_DISTANCE:
             # Wall detected on the left -> Turn Right to avoid it
             print(f"Left wall detected ({side_distance}cm). Rotating RIGHT.")
-            my_dog.do_action('turn_right', step_count=1, speed=90)
+            my_dog.do_action('turn_right', step_count=4, speed=90)
         else:
             # No wall on the left -> Turn Left to find a path
             print(f"No left wall ({side_distance}cm). Rotating LEFT.")
@@ -50,8 +50,6 @@ def patrol():
         my_dog.wait_all_done()
         bark(my_dog, [head_yaw, 0, 0])
 
-        # REMOVED: The 'while distance < DANGER_DISTANCE' loop has been deleted
-        # so the dog returns to the main patrol loop immediately.
 
     # CASE 2: Path is safe
     else:
@@ -60,6 +58,7 @@ def patrol():
         my_dog.do_action('forward', step_count=2, speed=98)
         my_dog.do_action('shake_head', step_count=1, speed=80)
         my_dog.do_action('wag_tail', step_count=5, speed=99)
+
 
 if __name__ == "__main__":
     try:
